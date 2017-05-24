@@ -12,9 +12,9 @@ app.use(express.static(__dirname + '/public'));
 // configure express to parse JSON in the body of an HTTP request
 app.use(express.bodyParser());
 
-var mongodbConnectionString = "mongodb://admin:UpwCdvF5cYQa@127.12.162.130:27017/applications";
+var mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + "applications";
 if (typeof process.env.OPENSHIFT_MONGODB_DB_URL == "undefined") {
-    mongodbConnectionString = "cs5610353";
+    mongodbConnectionString = "applications";
 }
 var db = mongojs(mongodbConnectionString, ["applications"]);
 
